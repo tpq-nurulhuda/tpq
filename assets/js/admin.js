@@ -15,10 +15,13 @@
     murid: 'Data Master: Data Murid',
     rt: 'Data Master: Wilayah RT',
     warga: 'Data Master: Data Warga',
-    donasi_sukarela: 'Transaksi: Donasi Sukarela',
-    donasi_insidental: 'Transaksi: Donasi Insidental',
-    laporan: 'Laporan & Cetak Profesional',
-    periode: 'Pengaturan Periode Donasi',
+    pengaturan_iuran: 'Pengaturan Iuran Target',
+    iuran_target: 'Penerimaan Iuran Target',
+    sumbangan_insidental: 'Sumbangan Insidental',
+    riwayat_transaksi: 'Riwayat Transaksi Keuangan',
+    pengeluaran: 'Pengeluaran Kas TPQ',
+    saldo_keuangan: 'Saldo Keuangan & Privasi Publik',
+    laporan: 'Laporan Donasi & Keuangan',
     settings: 'Pengaturan Website & Backup',
     users: 'Manajemen Pengguna',
     audit_log: 'Audit Log Aktivitas'
@@ -89,11 +92,14 @@
       case 'guru': renderGuruAdmin(container); break;
       case 'murid': renderMuridAdmin(container); break;
       case 'rt': renderRTAdmin(container); break;
-      case 'warga': renderWargaAdmin(container); break;
-      case 'donasi_sukarela': TPQAdminDonasi.renderSukarela(container); break;
-      case 'donasi_insidental': TPQAdminDonasi.renderInsidental(container); break;
+      case 'warga': TPQAdminDonasi.renderDataWarga(container); break;
+      case 'pengaturan_iuran': TPQAdminDonasi.renderPengaturanIuran(container); break;
+      case 'iuran_target': TPQAdminDonasi.renderPenerimaanIuran(container); break;
+      case 'sumbangan_insidental': TPQAdminDonasi.renderSumbanganInsidental(container); break;
+      case 'riwayat_transaksi': TPQAdminDonasi.renderRiwayatTransaksi(container); break;
+      case 'pengeluaran': TPQAdminDonasi.renderPengeluaran(container); break;
+      case 'saldo_keuangan': TPQAdminDonasi.renderSaldoKeuangan(container); break;
       case 'laporan': TPQAdminLaporan.render(container); break;
-      case 'periode': TPQAdminDonasi.renderPeriode(container); break;
       case 'settings': renderSettingsAdmin(container); break;
       case 'users': renderUsersAdmin(container); break;
       case 'audit_log': renderAuditLogAdmin(container); break;
@@ -107,51 +113,23 @@
     TPQApi.request('admin_dashboard', {}, { requireAuth: true })
       .then(function (data) {
         var s = data.stats || {};
-        var don = data.donasi || {};
-        var sk = don.ringkasan_sukarela || {};
-        var ins = don.ringkasan_insidental || {};
+        var saldo = data.saldo || {};
+        var rw = data.ringkasan_warga || {};
         var esc = TPQUi.escapeHtml;
-
-        var rtRows = (don.rekap_rt || []).map(function (r) {
-          return (
-            '<tr>' +
-            '  <td><strong>' + esc(r.nomor_rt) + '</strong></td>' +
-            '  <td class="text-center">' + r.jumlah_warga + '</td>' +
-            '  <td class="text-right">' + TPQUi.formatRupiah(r.total_sukarela) + '</td>' +
-            '  <td class="text-right">' + TPQUi.formatRupiah(r.total_insidental) + '</td>' +
-            '  <td class="text-right"><strong>' + TPQUi.formatRupiah(r.total_keseluruhan) + '</strong></td>' +
-            '  <td><button class="btn btn-outline btn-sm" data-drill-rt="' + esc(r.id_rt) + '">Detail Warga</button></td>' +
-            '</tr>'
-          );
-        }).join('');
 
         container.innerHTML =
           '<div class="stats-grid" style="margin-bottom:20px;">' +
-          '  <div class="stat-card"><div class="stat-label">Guru Aktif</div><div class="stat-value">' + TPQUi.formatNumber(s.jumlah_guru) + '</div></div>' +
-          '  <div class="stat-card gold"><div class="stat-label">Murid Aktif</div><div class="stat-value">' + TPQUi.formatNumber(s.jumlah_murid) + '</div></div>' +
-          '  <div class="stat-card info"><div class="stat-label">Donasi Sukarela (' + esc(don.tahun) + ')</div><div class="stat-value" style="font-size:1.3rem;">' + TPQUi.formatRupiah(sk.total_keseluruhan_sukarela) + '</div></div>' +
-          '  <div class="stat-card dark"><div class="stat-label">Donasi Insidental (' + esc(don.tahun) + ')</div><div class="stat-value" style="font-size:1.3rem;">' + TPQUi.formatRupiah(ins.total_donasi_insidental) + '</div></div>' +
+          '  <div class="stat-card"><div class="stat-label">Guru &amp; Murid Aktif</div><div class="stat-value">' + TPQUi.formatNumber(s.jumlah_guru) + ' / ' + TPQUi.formatNumber(s.jumlah_murid) + '</div><div class="stat-sub">Guru / Santri Aktif</div></div>' +
+          '  <div class="stat-card info"><div class="stat-label">Total Iuran Target</div><div class="stat-value" style="font-size:1.3rem;">' + TPQUi.formatRupiah(saldo.total_iuran_target) + '</div><div class="stat-sub">Sudah bayar: ' + TPQUi.formatNumber(rw.warga_sudah_membayar) + ' dari ' + TPQUi.formatNumber(rw.jumlah_warga) + ' warga</div></div>' +
+          '  <div class="stat-card gold"><div class="stat-label">Total Sumbangan Insidental</div><div class="stat-value" style="font-size:1.3rem;">' + TPQUi.formatRupiah(saldo.total_sumbangan_insidental) + '</div><div class="stat-sub">Total Penerimaan: ' + TPQUi.formatRupiah(saldo.total_penerimaan) + '</div></div>' +
+          '  <div class="stat-card dark"><div class="stat-label">SALDO AKHIR KAS DONASI</div><div class="stat-value" style="font-size:1.35rem;">' + TPQUi.formatRupiah(saldo.saldo_akhir) + '</div><div class="stat-sub">Pengeluaran: ' + TPQUi.formatRupiah(saldo.total_pengeluaran) + '</div></div>' +
           '</div>' +
-          '<div class="grid-2" style="margin-bottom:20px;">' +
-          '  <div class="card"><div class="card-header"><h2 class="card-title">Grafik Donasi per Periode (' + esc(don.tahun) + ')</h2></div><div id="admin-dash-chart"></div></div>' +
-          '  <div class="card">' +
-          '    <div class="card-header"><h2 class="card-title">Rekap Donasi per Wilayah RT</h2></div>' +
-          '    <div class="table-responsive"><table><thead><tr><th>RT</th><th class="text-center">Warga</th><th class="text-right">Sukarela</th><th class="text-right">Insidental</th><th class="text-right">Total</th><th>Aksi</th></tr></thead><tbody id="dash-rt-tbody">' + (rtRows || '<tr><td colspan="6" class="text-center">Belum ada RT</td></tr>') + '</tbody></table></div>' +
-          '  </div>' +
+          '<div class="card">' +
+          '  <div class="card-header"><h2 class="card-title">Grafik Arus Penerimaan Bulanan (' + esc(data.tahun || new Date().getFullYear()) + ')</h2></div>' +
+          '  <div id="admin-dash-chart"></div>' +
           '</div>';
 
-        TPQUi.renderLightweightBarChart(document.getElementById('admin-dash-chart'), don.chart_periode || []);
-
-        document.getElementById('dash-rt-tbody').addEventListener('click', function (e) {
-          var btn = e.target.closest('button[data-drill-rt]');
-          if (!btn) return;
-          var rtId = btn.getAttribute('data-drill-rt');
-          var list = (don.warga_donasi || []).filter(function (w) { return w.id_rt === rtId; });
-          var rows = list.map(function (w) {
-            return '<tr><td><strong>' + esc(w.nama_lengkap) + '</strong></td><td>' + TPQUi.polaBadge(w.jenis_pola) + '</td><td class="text-right">' + TPQUi.formatRupiah(w.total_realisasi) + '</td><td>' + TPQUi.statusBadge(w.status_partisipasi) + '</td></tr>';
-          }).join('');
-          TPQUi.openModal('Detail Partisipasi Warga RT', '<div class="table-responsive"><table><thead><tr><th>Nama Warga</th><th>Pola</th><th class="text-right">Total Realisasi</th><th>Status</th></tr></thead><tbody>' + (rows || '<tr><td colspan="4" class="text-center">Belum ada warga di RT ini.</td></tr>') + '</tbody></table></div>', '<button class="btn btn-outline" onclick="TPQUi.closeModal()">Tutup</button>', true);
-        });
+        TPQUi.renderLightweightBarChart(document.getElementById('admin-dash-chart'), saldo.chart_bulanan || []);
       })
       .catch(function (err) {
         container.innerHTML = TPQUi.renderError(err.message);
@@ -805,7 +783,7 @@
 
   function openUserModal(editU, container) {
     var esc = TPQUi.escapeHtml;
-    var permOptions = ['dashboard', 'profil', 'guru', 'murid', 'rt', 'warga', 'donasi_sukarela', 'donasi_insidental', 'laporan'];
+    var permOptions = ['dashboard', 'profil', 'guru', 'murid', 'rt', 'warga', 'pengaturan_iuran', 'iuran_target', 'sumbangan_insidental', 'riwayat_transaksi', 'pengeluaran', 'saldo_keuangan', 'laporan'];
     var curPerms = (editU && editU.permissions) || permOptions;
 
     var body =
