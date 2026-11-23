@@ -1,0 +1,256 @@
+/* ==========================================================================
+   admin.css - Dashboard Administrator SaaS/ERP Modern Style
+   Portal Digital TPQ Nurul Huda
+   ========================================================================== */
+
+.login-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #07291F 0%, #0B3D2E 50%, #146C43 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--gold);
+}
+
+.login-brand {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login-brand img {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+}
+
+.login-brand h1 {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  color: var(--primary-dark);
+}
+
+.login-brand p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+/* ==================== ADMIN LAYOUT ==================== */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.admin-sidebar {
+  width: 264px;
+  flex-shrink: 0;
+  background: var(--primary-dark);
+  color: rgba(255, 255, 255, 0.88);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid rgba(212, 175, 55, 0.25);
+  z-index: 200;
+  transition: transform 0.25s ease;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand img { width: 38px; height: 38px; }
+.sidebar-brand-title { font-weight: 800; font-size: 0.96rem; color: var(--white); line-height: 1.2; }
+.sidebar-brand-sub { font-size: 0.72rem; color: var(--gold); }
+
+.sidebar-nav { padding: 14px 12px; flex: 1; }
+
+.sidebar-group-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(212, 175, 55, 0.8);
+  font-weight: 700;
+  padding: 12px 10px 6px;
+}
+
+.sidebar-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 3px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-item:hover { background: rgba(255, 255, 255, 0.08); color: var(--white); }
+
+.sidebar-item.active {
+  background: var(--primary);
+  color: var(--white);
+  border-left: 3px solid var(--gold);
+}
+
+.sidebar-footer {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.82rem;
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 150;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.topbar-title { margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); }
+
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+
+.user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--primary-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.admin-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.sidebar-mobile-toggle {
+  display: none;
+  background: var(--primary-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 11px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--primary-dark);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 190;
+}
+
+/* ==================== REPORT PAPER ==================== */
+.report-paper {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.report-kop {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 16px;
+  border-bottom: 3px double var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.report-kop img { width: 64px; height: 64px; object-fit: contain; }
+.report-kop h2 { margin: 0 0 4px; color: var(--primary-dark); font-size: 1.3rem; }
+.report-kop p { margin: 0; font-size: 0.86rem; color: var(--text-muted); }
+
+.report-signature {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.report-sign-box {
+  text-align: center;
+  min-width: 220px;
+  font-size: 0.88rem;
+}
+
+.report-sign-line {
+  margin-top: 64px;
+  border-top: 1px solid var(--text);
+  padding-top: 6px;
+  font-weight: 700;
+}
+
+/* ==================== TABS ==================== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary);
+}

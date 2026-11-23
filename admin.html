@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administrator | Portal Digital TPQ Nurul Huda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <!-- LOGIN VIEW -->
+  <div id="admin-login-view" class="login-shell" style="display:none;">
+    <div class="login-card">
+      <div class="login-brand">
+        <img src="assets/images/logo.svg" alt="Logo TPQ Nurul Huda">
+        <h1>Login Administrator</h1>
+        <p>Portal Digital TPQ Nurul Huda</p>
+      </div>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" autocomplete="username" required placeholder="Masukkan username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" autocomplete="current-password" required placeholder="Masukkan password">
+        </div>
+        <div id="login-error-msg" style="color:var(--danger);font-size:0.84rem;margin-bottom:12px;display:none;"></div>
+        <button type="submit" id="login-submit-btn" class="btn btn-primary" style="width:100%;padding:12px;">Masuk ke Dashboard</button>
+      </form>
+      <div style="text-align:center;margin-top:18px;">
+        <a href="index.html" style="font-size:0.85rem;color:var(--text-muted);">&larr; Kembali ke Halaman Publik</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SHELL -->
+  <div id="admin-app-view" class="admin-layout" style="display:none;">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="assets/images/logo.svg" alt="Logo">
+        <div>
+          <div class="sidebar-brand-title">TPQ NURUL HUDA</div>
+          <div class="sidebar-brand-sub">Admin Dashboard</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="admin-sidebar-nav">
+        <div class="sidebar-group-label">Utama</div>
+        <button class="sidebar-item" data-menu="dashboard" data-perm="dashboard">Dashboard</button>
+
+        <div class="sidebar-group-label">Data Master</div>
+        <button class="sidebar-item" data-menu="profil" data-perm="profil">Profil Lembaga</button>
+        <button class="sidebar-item" data-menu="guru" data-perm="guru">Profil Guru</button>
+        <button class="sidebar-item" data-menu="murid" data-perm="murid">Data Murid</button>
+        <button class="sidebar-item" data-menu="rt" data-perm="rt">Wilayah RT</button>
+        <button class="sidebar-item" data-menu="warga" data-perm="warga">Data Warga</button>
+
+        <div class="sidebar-group-label">Transaksi &amp; Keuangan</div>
+        <button class="sidebar-item" data-menu="donasi_sukarela" data-perm="donasi_sukarela">Donasi Sukarela</button>
+        <button class="sidebar-item" data-menu="donasi_insidental" data-perm="donasi_insidental">Donasi Insidental</button>
+        <button class="sidebar-item" data-menu="laporan" data-perm="laporan">Laporan &amp; Cetak</button>
+
+        <div class="sidebar-group-label">Sistem &amp; Superadmin</div>
+        <button class="sidebar-item" data-menu="periode" data-perm="periode">Pengaturan Periode</button>
+        <button class="sidebar-item" data-menu="settings" data-perm="settings">Pengaturan Website</button>
+        <button class="sidebar-item" data-menu="users" data-perm="users">Manajemen Pengguna</button>
+        <button class="sidebar-item" data-menu="audit_log" data-perm="audit_log">Audit Log</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" style="color:var(--gold);display:block;margin-bottom:8px;">Lihat Website Publik &nearr;</a>
+        <button class="btn btn-outline-light btn-sm" id="btn-logout-sidebar" style="width:100%;">Keluar (Logout)</button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Menu">&#9776;</button>
+          <h1 class="topbar-title" id="admin-page-title">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="user-pill" id="admin-user-pill">Admin</span>
+        </div>
+      </header>
+
+      <main class="admin-content" id="admin-content-area"></main>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/export.js"></script>
+  <script src="assets/js/laporan.js"></script>
+  <script src="assets/js/admin-donasi.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

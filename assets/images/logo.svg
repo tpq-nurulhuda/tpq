@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Logo TPQ Nurul Huda">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B3D2E"/>
+      <stop offset="100%" stop-color="#146C43"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D06B"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A67C00"/>
+    </linearGradient>
+  </defs>
+  <!-- Islamic 8-point star outer frame -->
+  <g transform="translate(60,60)">
+    <rect x="-40" y="-40" width="80" height="80" rx="10" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="2.5"/>
+    <rect x="-40" y="-40" width="80" height="80" rx="10" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="2.5" transform="rotate(45)"/>
+    <circle cx="0" cy="0" r="38" fill="#0B3D2E" stroke="url(#goldGrad)" stroke-width="1.5"/>
+  </g>
+  <!-- Open Quran / Rehal -->
+  <path d="M34 68 C42 62, 52 63, 60 70 C68 63, 78 62, 86 68 L82 82 C75 77, 67 78, 60 84 C53 78, 45 77, 38 82 Z" fill="#FFFFFF" stroke="url(#goldGrad)" stroke-width="1.8"/>
+  <line x1="60" y1="70" x2="60" y2="84" stroke="#D4AF37" stroke-width="1.6"/>
+  <!-- Rehal stand -->
+  <path d="M44 85 L60 78 L76 85" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Crescent & Star above -->
+  <path d="M64 31 A14 14 0 1 0 64 57 A10.5 10.5 0 1 1 64 31 Z" fill="url(#goldGrad)"/>
+  <polygon points="69,37 71,42 76,42 72,45 73.5,50 69,47 64.5,50 66,45 62,42 67,42" fill="url(#goldGrad)"/>
+</svg>
